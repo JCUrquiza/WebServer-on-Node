@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { todo } from 'node:test';
 
 const todos = [
     { id: 1, text: 'Buy milk', createdAt: new Date() },
@@ -31,12 +32,18 @@ export class TodosController {
 
     public createTodo = ( req: Request, res: Response ) => {
 
-        const body = req.body;
+        const { text } = req.body;
+        if ( !text ) return res.status(400).json({ error: `Text property is required` });
 
-        console.log(body);
-        
+        const newTodo = {
+            id: todos.length + 1,
+            text: text,
+            createdAt: null
+        }
 
-        res.json(body)
+        todos.push(newTodo);
+
+        res.json( newTodo );
     }
 
 }
