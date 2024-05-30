@@ -24,6 +24,10 @@ export class Server {
     async start() {
 
         //* Middlewares
+        // Parsea la info que viene en el body y la transforma en objecto JSON:
+        this.app.use( express.json() );
+        // El sig middle permite el x-www-form-urlencoded
+        this.app.use( express.urlencoded({ extended: true }) );
 
         //* Public Folder
         this.app.use( express.static(this.publicPath) );
