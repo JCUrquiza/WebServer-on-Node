@@ -63,7 +63,7 @@ export class TodosController {
             data: updateTodoDto!.values
         });
         
-        res.json(updatedTodo)
+        res.json(updatedTodo);
     }
 
 
